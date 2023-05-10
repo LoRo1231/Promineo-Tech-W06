@@ -1,0 +1,170 @@
+/*
+  Copyright (c) 2023 Promineo Tech
+  Author:  Promineo Tech Academic Team
+  Subject:  JavaScript DevTools, Debugging, and Unit Tests
+  FE Lab Week 06
+*/
+
+/* ----------------------------------------------------- */
+// Key Term List:
+// DevTools
+// Chrome/FireFox/Safari/Opera/Microsoft Edge
+// Debugging
+// TDD (Test Driven Deployment)
+// BDD (Behavior Driven Deployment)
+// Mocha/Chai
+// assert/expect
+// describe/it/equal/to/deep
+// console.table()
+
+/* ----------------------------------------------------- */
+// Please do not alter the existing code unless instructed to do so.
+// Read the comments and add your code where it is specified for each question.
+/* ----------------------------------------------------- */
+
+/*------------------------ Debugging Examples ------------------------*/
+console.log(`-------------------------- 
+Question 1: Debugging!`)
+
+/** Instruction: This lab is focused on two goals: 
+ *               1) Increasing competence on reading and debugging errors in the console/browser
+ *                  and debugging pre-written code
+ *               2) Creating tests in mocha/chai for each question
+ * 
+ *  
+ * Note:         Debugging is the art of tackling a specific problem from every angle.
+ *               
+ *               Think about the expected result, and consider the possible issues;
+ *               Generally:    Is my code connected correctly? Is there a typo? 
+ *                             Am I using this correctly? 
+ *                             What kind of data type (string/array/object etc) am I working with?
+ *               
+ *               Specifically: My data type is a string.. am I able to use .map() on a string?                             
+ *                             
+ * 
+ *               Question everything. console.log() everything.
+ *               Dev tools and google are your friend :)
+ * 
+ * Step 1: Uncomment out the code below the question including the last console.log(). 
+ *         Run your code and find the error.
+ * Step 2: After you've fixed the error for that question, create a test in tests.js using mocha/chai
+ * 
+ * 
+ * DO NOT REMOVE THE LAST CONSOLE.LOG() IT IS FOR CHECKING YOUR WORK
+ * The titles are a hint at the expected answer, not a solution. Read the error in your browser.
+ * You are given an example problem and test.
+ *
+/*--------------------------------------------------------------------*/
+console.log('Example Question: Add two numbers')
+/* -- STEP 1: DEBUG CODE --*/
+
+// BROKEN CODE EXAMPLE:
+function addTwoNumbers (num1,num2) {
+   num1+num2
+}
+
+console.log(addTwoNumbers(2,3)) // ERROR IN CONSOLE: undefined
+// AFTER DEBUGGING:
+function addTwoNumbers(num1, num2) {
+  return `num1 + num2 is: ${num1 + num2}`
+}
+
+console.log(addTwoNumbers(2, 3)) // logs 5
+/* -- STEP 2: CREATE A TEST IN tests.js -- */
+/*--------------------------------------------------------------------*/
+console.log(`1a: Sorted array of numbers:`)
+
+const arrayOfNumbers = [1, 5, 3, 2, 4]
+sortedArrayOfNumbers = arrayOfNumbers.sort((a, b) => a - b)
+
+console.log(sortedArrayOfNumbers); //Used the same name of a const variable
+// /*----------------------------------------------------*/
+// console.log(`1b: Manage my wallet `)
+
+// class Wallet {
+//   constructor(startingMoney) {
+//     this.startingMoney = startingMoney //this.money didn't reference anything - changing to startingMoney
+//   }
+
+//   addMoney(amount) {
+//     let newTotal = startingMoney += amount;
+//   }
+
+//   removeMoney(amount) {
+//     let newTotal = startingMoney -= amount;
+//   }
+// }
+
+// const myWallet = new Wallet(100);
+// myWallet.removeMoney(14.99);
+// myWallet.addMoney(3);
+
+// console.log(myWallet.startingMoney);
+/*----------------------------------------------------*/
+console.log(`1c: Day of the Week`)
+//In some cases, there's no error, but you're not getting your expected result back.
+//Reminder: Switch statements are a 'cleaner' version of if/else
+
+const dayOfTheWeek = (num) => {
+  switch (num) {
+    case 1:
+      return 'Monday'
+      break;
+    case 2:
+      return 'Tuesday'
+      break;
+    case 3:
+      return 'Wednesday'
+      break;
+    case 4:
+      return 'Thursday'
+      break;
+    case 5:
+      return 'Friday'
+      break;
+    case 6:
+      return 'Saturday'
+      break;
+    case 7:
+      return 'Sunday'
+      break;
+    default:
+      console.log('Err. Something went wrong.');
+  }
+} //no breaks & no returns
+
+console.log(dayOfTheWeek(5)) // should log Friday
+/*----------------------------------------------------*/
+console.log(`1d: Only wizards shall pass!`)
+
+const movieCharacters = [
+  {
+    name: 'Howl',
+    isAWizard: true,
+    quote: `You're wearing that hat? After all the magic I used to make your dress pretty?`,
+  },
+  {
+    name: 'Kalcifer',
+    isAWizard: false,
+    quote: `I don't cook! I'm a scary and powerful fire demon!`,
+  },
+  {
+    name: 'Gandalf',
+    isAWizard: true,
+    quote: `You shall not pass!`,
+  },
+  {
+    name: 'Luke Skywalker',
+    isAWizard: false,
+    quote: `May the Force be with you.`,
+  },
+]
+
+function onlyWizards(arrayOfCharacters) {
+  return arrayOfCharacters.filter((character) => character == true)
+}
+
+//check out the console.table() method you can use on objects!
+console.table(onlyWizards(movieCharacters)) //expecting an array of characters whose key/value pair is = isAWizard: true
+/*----------------------------------------------------*/
+console.log(`-----------Finished------------`)
