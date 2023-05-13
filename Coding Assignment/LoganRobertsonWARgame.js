@@ -24,20 +24,19 @@ class Card{
     constructor(suit, value){
         this.value = value;
         this.suit = suit;
+        this.jack = 11;
+        this.queen = 12;
+        this.king = 13;
+        this.ace = 14;
         //need new prop. to rep. face value (jack = 11)
     }
-    describeNewCard(){
-       console.log(`${this.value} of ${this.suit}`);
+    createNewCard(){
+        
     }
 }
 
 let card = new Card(); 
 console.log(card);
-
-card.describeNewCard();
-
-//Not sure if this is the right direction, can classes pull elements from arrays?
-//should the array be inside the class instead? Currently console.loging Undefined.
 
 
 
@@ -51,37 +50,84 @@ class Deck{
         this.deck = [];
     }
     //function adds cards to deck as long as it is a card from the card class
-    addCardToDeck(card){
-        if(card instanceof Card){
-            this.deck.push(card);
-        }
-    }
+    
     createDeck(){
         for(let i = 0; i < value.length; i++){
-            console.log(value[i]);
+            // console.log(value[i]);
             for(let x = 0; x < suit.length; x++){
-                console.log(suit[x]);
+                // console.log(suit[x]);
                 this.deck.push(new Card(suit[x], value[i])); //when pushing new card object think about string card needing values
             }
         }
-        console.log(this.deck[0].value); //consider when comparing cards
+        // console.log(this.deck[0].value); //consider when comparing cards
+    }
+
+    shuffleDeck(){
+        return this.deck.sort( ()=> Math.random()-.05 );
     }
 }
 
 let deck = new Deck();
 deck.createDeck();
 
-//shuffle deck?
-
 //player class?
 
-class Person{
-    constructor(name){
+class Player{
+    constructor(name, points){
         this.name = name;
+        this.points = points;
+        this.hand = [];
     }
 }
 
+const playerOne = new Player("Hannah");
+console.log(playerOne);
+const playerTwo = new Player("Logan");
+console.log(playerTwo);
+
 //game logic class
+
+class Game{
+    constructor(){
+        
+    }
+
+    dealDeck(){
+
+        for(let i = 0; i < deck.length; i++){
+            let num = deck[i];
+            if(num % 2 == 0){ //Mod 2 should find the evens & push to player 1's hand
+                playerOne.hand.push(num);
+            } else if (num % 3 == 0){ //Mod 3 should find the odds & push to player 2's hand
+                    playerTwo.hand.push(num);
+                }
+        }
+    }
+
+    playWar(){
+        playerOne.points = 0;
+        playerTwo.points = 0;
+        if (playerOne.hand[i] === playerTwo.hand[i]){
+            console.log("Tie - no points awarded");
+        } else if (playerOne.hand[i] > playerTwo.hand[i]){
+            playerOne.points += 1;
+        } else if (playerOne.hand[i] < playerTwo.hand[i]){
+            playerTwo.points += 1;
+        }
+        console.log(`Final Score Is:
+        ${playerOne.name} has ${playerOne.points}
+        ${playerTwo.name} has ${playerTwo.points}`);
+
+        if(playerOne.points > playerTwo.points){
+            console.log(`${playerOne.name} is the winner!!`);
+        } else if (playerOne.point < playerTwo.points){
+            console.log(`${playerTwo.name} is the winner!!`);
+        } else console.log(`Tied Game!!`);
+    }
+}
+
+let gameOne = new Game();
+console.log(gameOne.dealDeck());
 
 //deal deck evenly between 2 players
 //each deck should be an array that the order randomly shuffles
